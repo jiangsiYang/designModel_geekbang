@@ -67,4 +67,12 @@ public class FindSpecificNumTest {
         Integer firstNum = FindSpecificNum.findSpecificNum(nums, specificNum);
         Assert.assertEquals(4, firstNum.intValue());
     }
+
+    @Test
+    public void findNumCorrect9() {
+        int[] nums = new int[]{-6, 24, -3, 42, 5, -5};
+        int specificNum = -5;
+        Integer firstNum = FindSpecificNum.findSpecificNum(nums, specificNum);
+        Assert.assertEquals(5, firstNum.intValue());
+    }
 }
