@@ -1,3 +1,5 @@
+package u028;
+
 import com.design.u028.FindSpecificNum;
 import org.junit.Assert;
 import org.junit.Test;
