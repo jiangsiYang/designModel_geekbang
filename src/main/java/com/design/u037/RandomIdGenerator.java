@@ -1,4 +1,4 @@
-package com.design.u035;
+package com.design.u037;
 
 import com.design.u034.IdGenerator;
 import com.google.common.annotations.VisibleForTesting;
@@ -22,11 +22,15 @@ public class RandomIdGenerator implements LogTraceIdGenerator {
      *
      * @return an random ID
      */
-    public String generator() {
-        String id = "";
-        String substrOfHostName = getLastfieldOfHostName();
+    public String generator() throws IdGenerationFailureException {
+        String substrOfHostName = null;
+        try {
+            substrOfHostName = getLastfieldOfHostName();
+        } catch (UnknownHostException e) {
+            throw new IdGenerationFailureException("host name is empty.");
+        }
         String randomString = generateRandomAlphameric(8);
-        id = String.format("%s-%d-%s", substrOfHostName,
+        String id = String.format("%s-%d-%s", substrOfHostName,
                 System.currentTimeMillis(), randomString);
         return id;
     }
@@ -41,6 +45,10 @@ public class RandomIdGenerator implements LogTraceIdGenerator {
      */
     @VisibleForTesting
     public String generateRandomAlphameric(int length) {
+        if (length <= 0) {
+            throw new IllegalArgumentException("...");
+        }
+
         char[] randomChars = new char[length];
         int count = 0;
         Random random = new Random();
@@ -67,14 +75,15 @@ public class RandomIdGenerator implements LogTraceIdGenerator {
      * @return
      * @throws UnknownHostException
      */
-    private String getLastfieldOfHostName() {
+    private String getLastfieldOfHostName() throws UnknownHostException {
         String substrOfHostName = null;
-        try {
-            String hostName = InetAddress.getLocalHost().getHostName();
-            substrOfHostName = getLastSubstrSplittedByDot(hostName);
-        } catch (UnknownHostException e) {
-            logger.warn("Failed to get the host name.", e);
+        String hostName = InetAddress.getLocalHost().getHostName();
+
+        if (hostName == null || hostName.isEmpty()) { // 此处做判断
+            throw new UnknownHostException("...");
         }
+
+        substrOfHostName = getLastSubstrSplittedByDot(hostName);
         return substrOfHostName;
     }
 
@@ -87,6 +96,11 @@ public class RandomIdGenerator implements LogTraceIdGenerator {
      */
     @VisibleForTesting
     public String getLastSubstrSplittedByDot(String hostName) {
+        if (hostName == null || hostName.isEmpty()) {
+            //运行时异常
+            throw new IllegalArgumentException("...");
+        }
+
         String[] tokens = hostName.split("\\.");
         //因为substrOfHostName和hostName有不同的语义功能，所以这里不能重用hostName
         String substrOfHostName = hostName;
