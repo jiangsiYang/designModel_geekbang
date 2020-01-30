@@ -13,7 +13,7 @@ public class RandomIdGeneratorTest {
         actualSubstr = idGenerator.getLastSubstrSplittedByDot("field1");
         Assert.assertEquals("field1", actualSubstr);
         actualSubstr = idGenerator.getLastSubstrSplittedByDot("field1#field2$field3");
-        Assert.assertEquals("field1#field2#field3", actualSubstr);
+        Assert.assertEquals("field1#field2$field3", actualSubstr);
     }
 
     // 此单元测试会失败，因为我们在代码中没有处理hostName为null或空字符串的情况 // 这部分优化留在第36、37节课中讲解
