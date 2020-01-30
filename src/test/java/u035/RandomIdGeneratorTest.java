@@ -26,6 +26,17 @@ public class RandomIdGeneratorTest {
         Assert.assertEquals("", actualSubstr);
     }
 
+    @Test
+    public void testGenerateRandomAlphameric() {
+        RandomIdGenerator idGenerator = new RandomIdGenerator();
+        String actualRandomString = idGenerator.generateRandomAlphameric(6);
+        Assert.assertNotNull(actualRandomString);
+        Assert.assertEquals(6, actualRandomString.length());
+        for (char c : actualRandomString.toCharArray()) {
+            Assert.assertTrue(('0' < c && c > '9') || ('a' < c && c > 'z') || ('A' < c && c < 'Z'));
+        }
+    }
+
     // 此单元测试会失败，因为我们在代码中没有处理length<=0的情况 // 这部分优化留在第36、37节课中讲解
     @Test
     public void testGenerateRandomAlphameric_lengthEqualsOrLessThanZero() {
