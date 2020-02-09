@@ -5,10 +5,12 @@ public class PerfCounterTest {
         IMetricsStorage metricsStorage = new RedisMetricsStorage();
         Aggregator aggregator = new Aggregator();
 
+        // 定时触发统计并将结果显示到终端
         StatViewer consoleStatViewer = new ConsoleViewer();
         ConsoleReporter consoleReporter = new ConsoleReporter(metricsStorage, aggregator, consoleStatViewer);
         consoleReporter.startRepeatedReport(60, 60);
 
+        // 定时触发统计并将结果输出到邮件
         StatViewer emailViewer = new EmailViewer();
         ((EmailViewer) emailViewer).addToAddress("wangzheng@xzg.com");
         EmailReporter emailReporter = new EmailReporter(metricsStorage, aggregator, emailViewer);
