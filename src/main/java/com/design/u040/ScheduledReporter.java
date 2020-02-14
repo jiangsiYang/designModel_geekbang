@@ -3,6 +3,10 @@ package com.design.u040;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 将 ConsoleReporter 和 EmailReporter 中的相同代码逻辑，提取到父类 ScheduledReporter 中，以解决代码重复问题
+ * 其实群接龙活动详情的service层就有点类似这个
+ */
 public abstract class ScheduledReporter {
     //因为涉及到子类，这里不能用private了
     protected IMetricsStorage metricsStorage;
