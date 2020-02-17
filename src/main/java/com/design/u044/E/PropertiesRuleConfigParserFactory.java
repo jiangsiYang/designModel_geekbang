@@ -1,4 +1,7 @@
-package com.design.u044;
+package com.design.u044.E;
+
+import com.design.u044.IRuleConfigParser;
+import com.design.u044.PropertiesRuleConfigParser;
 
 public class PropertiesRuleConfigParserFactory implements IRuleConfigParserFactory {
     @Override

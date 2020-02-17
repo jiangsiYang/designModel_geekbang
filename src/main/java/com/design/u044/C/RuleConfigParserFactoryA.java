@@ -1,4 +1,6 @@
-package com.design.u044;
+package com.design.u044.C;
+
+import com.design.u044.*;
 
 /**
  * 简单工厂的第一种实现方法

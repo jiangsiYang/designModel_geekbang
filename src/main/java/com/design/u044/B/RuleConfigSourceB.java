@@ -1,4 +1,6 @@
-package com.design.u044;
+package com.design.u044.B;
+
+import com.design.u044.*;
 
 /**
  * 重构代码版本第一步,将创建的代码独立成函数

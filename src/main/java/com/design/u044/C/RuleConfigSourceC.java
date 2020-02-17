@@ -1,22 +1,18 @@
-package com.design.u044;
+package com.design.u044.C;
+
+import com.design.u044.D.RuleConfigParserFactoryB;
+import com.design.u044.IRuleConfigParser;
+import com.design.u044.RuleConfig;
 
 /**
- * 未重构代码版本
+ * 重构代码版本第二步,可以进一步将 createParser() 函数剥离到一个独立的类中，让这个类只负责对象的创建。而这个类就是我们现在要讲的简单工厂模式类。
  */
-public class RuleConfigSourceA {
+public class RuleConfigSourceC {
 
     public RuleConfig load(String ruleConfigFilePath) {
         String ruleConfigFileExtension = getFileExtension(ruleConfigFilePath);
-        IRuleConfigParser parser = null;
-        if ("json".equalsIgnoreCase(ruleConfigFileExtension)) {
-            parser = new JsonRuleConfigParser();
-        } else if ("xml".equalsIgnoreCase(ruleConfigFileExtension)) {
-            parser = new XmlRuleConfigParser();
-        } else if ("yaml".equalsIgnoreCase(ruleConfigFileExtension)) {
-            parser = new YamlRuleConfigParser();
-        } else if ("properties".equalsIgnoreCase(ruleConfigFileExtension)) {
-            parser = new PropertiesRuleConfigParser();
-        } else {
+        IRuleConfigParser parser = RuleConfigParserFactoryA.createParser(ruleConfigFileExtension);
+        if (parser == null) {
             throw new RuntimeException(
                     "Rule config file format is not supported: " + ruleConfigFilePath);
         }
