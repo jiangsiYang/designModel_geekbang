@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="rateLimiter" class="com.design.u045.RateLimiter">
+        <constructor-arg ref="redisCounter"/>
+    </bean>
+
+    <bean id="redisCounter" class="com.design.u045.RedisCounter" scope="singleton" lazy-init="true">
+        <constructor-arg type="String" value="127.0.0.1"/>
+        <constructor-arg type="int" value="1234"/>
+    </bean>
+</beans>
