@@ -24,7 +24,7 @@ public class BeanDefinition {
     @Getter
     @Setter
     public static class ConstructorArg {
-        private boolean isRef;
+        private boolean isRef;  //是否对象类型
         private Class type;
         private Object arg;    // 省略必要的getter/setter/constructors  }
     }

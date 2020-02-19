@@ -50,9 +50,11 @@ public class BeansFactory {
                 for (int i = 0; i < args.size(); ++i) {
                     BeanDefinition.ConstructorArg arg = args.get(i);
                     if (!arg.isRef()) {
+                        //基本类型，直接注入即可
                         argClasses[i] = arg.getType();
                         argObjects[i] = arg.getArg();
                     } else {
+                        //对象类型，还要先去创建好，才能注入(ps:怎么解决循环依赖的问题呢?)
                         BeanDefinition refBeanDefinition = beanDefinitions.get(arg.getArg());
                         if (refBeanDefinition == null) {
                             throw new NoSuchBeanDefinitionException("Bean is not defined: " + arg.getArg());
