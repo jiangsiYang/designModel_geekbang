@@ -4,6 +4,9 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+/**
+ * 这是动态代理的另一个demo
+ */
 public class DynamicProxyHandler implements InvocationHandler {
     private Object tar;
 
