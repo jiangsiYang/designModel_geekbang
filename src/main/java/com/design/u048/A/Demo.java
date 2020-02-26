@@ -13,6 +13,8 @@ import com.design.u048.A.UserControllerProxy;
 public class Demo {
     public static void main(String[] args) {
         IUserController userController = new UserControllerProxy(new UserController());
+        //基于组合的静态代理。可以对原始类的子类也进行代理
+        IUserController userControllerB = new UserControllerProxy(new UserControllerB());
         userController.login("13607841111", "123456");
     }
 }
