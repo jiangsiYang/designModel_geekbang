@@ -1,6 +1,9 @@
 package com.design.u016.A;
 
-
+/**
+ * 这样的代码修改存在挺多问题的。一方面，我们对接口进行了修改，这就意味着调用这个接口的代码都要做相应的修改。
+ * 另一方面，修改了 check() 函数，相应的单元测试都需要修改（关于单元测试的内容我们在重构那部分会详细介绍）。
+ */
 public class Alert {
     private AlertRule rule;
     private Notification notification;
