@@ -37,6 +37,12 @@ public class ObserverRegistry {
         }
     }
 
+    /**
+     * 根据参数event的类型找到已注册的同一参数类型的 类及方法(载体是ObserverAction）
+     *
+     * @param event
+     * @return
+     */
     public List<ObserverAction> getMatchedObserverActions(Object event) {
         List<ObserverAction> matchedObservers = new ArrayList<>();
         Class<?> postedEventType = event.getClass();
