@@ -37,11 +37,7 @@ public class AuthToken {
         this.createTime = createTime;
     }
 
-    /**
-     * 这应该只是一个token的简单get方法而已吧？
-     *
-     * @return
-     */
+
     public String getToken() {
         return token;
     }
