@@ -21,6 +21,12 @@ public class ApiRequest {
     private String appId;
     private long timestamp;
 
+    public ApiRequest(String baseUrl, String token, String appId, long timestamp) {
+        this.baseUrl = baseUrl;
+        this.token = token;
+        this.appId = appId;
+        this.timestamp = timestamp;
+    }
 
     /**
      * 解析url得到ApiRequest对象
