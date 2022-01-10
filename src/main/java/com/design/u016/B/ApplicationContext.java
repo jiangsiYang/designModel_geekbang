@@ -10,7 +10,7 @@ public class ApplicationContext {
 
     public void initializeBeans() {
         alertRule = new AlertRule(/*.省略参数.*/); //省略一些初始化代码
-        notification = new Notification(/*.省略参数.*/); //省略一些初始化代码
+        notification = new Notification(/*.省略参数.*/); //如果不同的告警要配置不同的通知渠道，也可以通过初始化不同的渠道注入到不同的告警中去
         alert = new Alert();
         alert.addAlertHandler(new TpsAlertHandler(alertRule, notification));
         alert.addAlertHandler(new ErrorAlertHandler(alertRule, notification));

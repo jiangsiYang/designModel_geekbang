@@ -45,7 +45,7 @@ public class ApiRequest {
             return null;
         }
 
-        return new ApiRequest();
+        return new ApiRequest("baseUrl", "token", "appid", System.currentTimeMillis());
     }
 
     public String getBaseUrl() {
