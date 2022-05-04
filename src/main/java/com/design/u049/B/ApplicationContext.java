@@ -20,7 +20,11 @@ public class ApplicationContext {
         urgencyNotification = new UrgencyNotification(new EmailMsgSender(telephones)); //省略一些初始化代码
         trivialNotification = new TrivialNotification(new WechatMsgSender(telephones)); //省略一些初始化代码
         alert = new Alert();
+        //TPS的告警有3种通知方式
         alert.addAlertHandler(new TpsAlertHandler(alertRule, normalNotification));
+        alert.addAlertHandler(new TpsAlertHandler(alertRule, urgencyNotification));
+        alert.addAlertHandler(new TpsAlertHandler(alertRule, trivialNotification));
+
         alert.addAlertHandler(new ErrorAlertHandler(alertRule, urgencyNotification));
         // 改动三：注册handler
         alert.addAlertHandler(new TimeoutAlertHander(alertRule, trivialNotification));
